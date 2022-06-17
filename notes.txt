@@ -1,0 +1,13 @@
+./waf configure --board MatekF405-TE
+
+
+-Wno-error=misleading-indentation
+-Wno-misleading-indentation
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+    memcpy(serialid, (const void *)UDID_START, 12);
+#pragma GCC diagnostic pop
+
+
+srec_cat arduplane.bin -binary -o plane.hex -intel
