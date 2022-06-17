@@ -361,7 +361,10 @@ bool Util::get_system_id(char buf[40])
     uint8_t serialid[12];
     char board_name[14];
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
     memcpy(serialid, (const void *)UDID_START, 12);
+#pragma GCC diagnostic pop
     strncpy(board_name, CHIBIOS_SHORT_BOARD_NAME, 13);
     board_name[13] = 0;
 
@@ -763,4 +766,3 @@ void Util::set_soft_armed(const bool b)
     palWriteLine(HAL_GPIO_PIN_nARMED, !b);
 #endif
 }
-
